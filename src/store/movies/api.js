@@ -7,11 +7,11 @@ export const MOVIESTYPE = {
 };
 
 export function fetchMoviesQuery({ name }) {
-  return fetch('http://miaobbs.herokuapp.com/api/avers/search', { name });
+  return fetch('https://miaobbs.herokuapp.com/api/avers/search', { name });
 }
 export function fetchMovieSubject(id) {
-  return fetch(`http://miaobbs.herokuapp.com/api/avers/${id}`);
+  return fetch(`https://miaobbs.herokuapp.com/api/avers/${id}`);
 }
 export function fetchMovies() {
-  return fetch('http://miaobbs.herokuapp.com/api/avers');
+  return fetch('https://miaobbs.herokuapp.com/api/avers');
 }

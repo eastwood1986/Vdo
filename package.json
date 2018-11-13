@@ -13,6 +13,7 @@
     "lint": "eslint --fix *.js *.vue src/* test/unit/specs/* test/e2e/specs/*"
   },
   "dependencies": {
+    "express": "^4.16.4",
     "vue": "^2.1.10",
     "vue-router": "^2.2.0",
     "vuex": "^2.2.1"
