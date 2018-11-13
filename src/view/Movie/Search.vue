@@ -11,31 +11,19 @@
         <div class="result">
           <router-link :to="{name: 'MovieSubject', params: {id: subject.id}}" v-for="subject in subjects"  :key="subject.id">
             <mu-paper class="elem" :zDepth="1">
-                <div class="image" :style="'background-image: url('+subject.images.large+')'"></div>
+                <div class="image" :style="'background-image: url('+subject.cover+')'"></div>
                 <div class="text">
                     <div class="name">
-                      <span class="title">{{subject.title}}</span>
-                      <span class="year">{{subject.year}}</span>
+                      <span class="title">{{subject.av_name}}</span>
+                      <span class="name">{{subject.name}}</span>
                     </div>
-                    <div class="star">
-                    <!--
-                      <span class='star-box' v-if="subject.rating.average > 0">
-                        <mu-icon class='star-icon' :size='14' value="star" v-for="n in ratingStar(subject.rating.average).star"/>
-                        <mu-icon class='star-icon' :size='14' value="star_half" v-for="n in ratingStar(subject.rating.average).half"/>
-                        <mu-icon class='star-icon' :size='14' value="star_border" v-for="n in ratingStar(subject.rating.average).left"/>
-                      </span>
-                      -->
-                      <Star class='star-box' :rating="subject.rating.average" v-if="subject.rating.average > 0"></Star>
-                      <div class="star-num">{{subject.rating.average | fixNum}}</div>
-                    </div>
-                    <div class="genres">类型：{{subject.genres | arr2string}}</div>
-                    <div class="director">导演：{{subject.directors.map(e=>e.name) | arr2string}}</div>
-                    <div class="cast">主演：{{subject.casts.map(e=>e.name) | arr2string}}</div>
+                    <div class="genres">种类：{{subject.genre}}</div>
+                    <div class="director">在籍店舗名：{{subject.shop_name}}</div>
+                    <div class="cast">区域：{{subject.area}}</div>
                 </div>
             </mu-paper>
           </router-link>
         </div>
-
     </div>
 
 </template>
@@ -99,14 +87,14 @@ export default {
       }
       this.$store.dispatch(
         type.UPDATE_MOVIE_SEARCH_STEP, this.$store.state.movie.searchStep + 1,
-        );
-      this.$router.push({ name: 'MovieSearch', query: { q: this.q } });
+      );
+      this.$router.push({ name: 'MovieSearch', query: { name: this.q } });
     },
     getQuery() {
-      if (!this.$route.query.q) { return; }
-      if (this.$route.query.q !== this.$store.state.movie.movieQuery.q) {
+      if (!this.$route.query.name) { return; }
+      if (this.$route.query.name !== this.$store.state.movie.movieQuery.name) {
         console.log('dispatch...');
-        this.$store.dispatch(type.FETCH_MOVIES_QUERY, { q: this.$route.query.q });
+        this.$store.dispatch(type.FETCH_MOVIES_QUERY, { name: this.$route.query.name });
       }
     },
   },

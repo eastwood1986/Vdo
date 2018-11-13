@@ -1,8 +1,8 @@
 <template>
     <div class='footer'>
-        Powered By RalfZ
+        Powered By JPdriver
         <br>
-        ©2017
+        ©2018
     </div>
 </template>
 <style lang="css" scoped>

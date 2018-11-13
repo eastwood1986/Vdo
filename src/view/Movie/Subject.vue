@@ -1,77 +1,35 @@
 <template>
   <div style="position: relative">
     <mu-icon-button class='icon-back' icon='arrow_back' slot="left" @click='goBack()' />
-    <div class="image-wrap" :style="'background-image: url('+movie.images.large+')'">
+    <div class="image-wrap" :style="'background-image: url('+movie.cover+')'">
     </div>
     <div class="title-border">
       <div class="title-info">
         <div class="title-image">
-          <img :src='movie.images.large' />
+          <img :src='movie.cover' />
         </div>
         <div class="title-text">
-          <p>{{movie.title}}</p>
-          <p>{{movie.rating.average}}</p>
+          <p>{{movie.av_name}}</p>
         </div>
       </div>
     </div>
-
-    <div class="star">
-    <!--
-      <mu-icon class='star-icon' :size='36' value="star" v-for="n in ratingStar(movie.rating.average).star" />
-      <mu-icon class='star-icon' :size='36' value="star_half" v-for="n in ratingStar(movie.rating.average).half" />
-      <mu-icon class='star-icon' :size='36' value="star_border" v-for="n in ratingStar(movie.rating.average).left" />
-      -->
-      <Star :rating="movie.rating.average"></Star>
-    </div>
     <div class="info">
-      <p class="info-content"><span class="info-title">原名</span><span class="info-text">{{movie.original_title}}</span></p>
-      <p class="info-content"><span class="info-title">类型</span><span class="info-text">{{movie.genres | arr2string}}</span></p>
-      <p class="info-content"><span class="info-title">年代</span><span class="info-text">{{movie.year}}</span></p>
-      <p class="info-content"><span class="info-title">地区</span><span class="info-text">{{movie.countries | arr2string}}</span></p>
-      <p class="info-content"><span class="info-title">又名</span><span class="info-text">{{movie.aka | arr2string}}</span></p>
-      <p class="info-content"><span class="info-title">想看人数</span><span class="info-text">{{movie.wish_count}}</span></p>
-      <p class="info-content"><span class="info-title">看过人数</span><span class="info-text">{{movie.collect_count}}</span></p>
-      <p class="info-content"><span class="info-title">评分人数</span><span class="info-text">{{movie.ratings_count}}</span></p>
-      <p class="info-content"><span class="info-title">短评数量</span><span class="info-text">{{movie.comments_count}}</span></p>
-      <p class="info-content"><span class="info-title">影评数量</span><span class="info-text">{{movie.reviews_count}}</span></p>
+      <p class="info-content"><span class="info-title">AV女优名</span><span class="info-text">{{movie.av_name}}</span></p>
+      <p class="info-content"><span class="info-title">源氏名</span><span class="info-text">{{movie.name}}</span></p>
+      <p class="info-content"><span class="info-title">身高</span><span class="info-text">{{movie.height}}cm</span></p>
+      <p class="info-content"><span class="info-title">胸围</span><span class="info-text">{{movie.size_b}}</span></p>
+      <p class="info-content"><span class="info-title">腰围</span><span class="info-text">{{movie.size_w}}</span></p>
+      <p class="info-content"><span class="info-title">臀围</span><span class="info-text">{{movie.size_h}}</span></p>
+      <p class="info-content"><span class="info-title">在籍店舗名</span><span class="info-text"><a :href ="movie.shop_url" target="_blank">{{movie.shop_name}}</a></span></p>
+      <p class="info-content"><span class="info-title">种类</span><span class="info-text">{{movie.genre}}</span></p>
+      <p class="info-content"><span class="info-title">区域</span><span class="info-text">{{movie.area}}</span></p>
+      <p class="info-content"><span class="info-title">电话</span><span class="info-text"><a href="tel:movie.tel">{{movie.tel}}</a></span></p>
+      <p class="info-content"><span class="info-title">女优新闻</span><span class="info-text"><a :href ="'https://cse.google.com/cse?cx=005344802183955803914%3Ascary4-gbfe&q='+movie.av_name+'&searchsubmit=true' " target="_blank">{{movie.av_name}}</a></span></p>
+      <p class="info-content"><span class="info-title">女优参考片源</span><span class="info-text"><a :href ="'https://avgle.com/search/videos?search_query='+movie.av_name+'&search_type=videos' " target="_blank">{{movie.av_name}}</a></span></p>
+      <p class="info-content"><span class="info-title">女优DMM</span><span class="info-text"><a :href ="'http://www.dmm.co.jp/search/=/searchstr='+movie.av_name+'/analyze=V1EBAVcHUAE_/n1=FgRCTw9VBA4GAVhfWkIHWw__/n2=Aw1fVhQKX1ZRAlhMUlo5QQgBU1lR/sort=ranking/' " target="_blank">{{movie.av_name}}</a></span></p>
     </div>
-    <div class="summary">{{movie.summary}}</div>
-    <div class="author">
-      <p class="author-type">导演</p>
-      <mu-row>
-        <mu-col class='author-elem' width="50" tablet="33" desktop="25" v-for="subject in movie.directors" :key="subject.id">
-          <mu-paper>
-            <div class='author-wrap'>
-              <div class="author-image">
-                <div class='author-padding' :style="'background-image: url('+(subject.avatars && subject.avatars.large || '')+')'"></div>
-              </div>
-              <div class="author-name">{{subject.name}}</div>
-            </div>
-          </mu-paper>
-        </mu-col>
-      </mu-row>
-    </div>
-    <div class="author">
-      <p class="author-type">主演</p>
-      <mu-row>
-        <mu-col class='author-elem' width="50" tablet="33" desktop="25" v-for="subject in movie.casts" :key="subject.id">
-          <mu-paper>
-            <div class='author-wrap'>
-              <div class="author-image">
-                <div class='author-padding' :style="'background-image: url('+(subject.avatars && subject.avatars.large || '')+')'"></div>
-              </div>
-              <div class="author-name">{{subject.name}}</div>
-            </div>
-          </mu-paper>
-        </mu-col>
-
-      </mu-row>
-    </div>
-
   </div>
 </template>
-
-
 
 <script>
   import Star from 'components/Star';
@@ -79,24 +37,13 @@
   import { fetchMovieSubject } from './../../store/movies/api';
 
   export default {
-    name: 'movieSubject',
+    name: 'averSubject',
     components: {
       Star,
     },
     data() {
       return {
-        movie: {
-          title: '',
-          rating: {
-            average: 0,
-          },
-          images: {},
-          countries: [],
-          genres: [],
-          casts: [],
-          directors: [],
-          aka: [],
-        },
+        movie: {},
       };
     },
     watch: {
@@ -108,29 +55,12 @@
       this.setPage(this.$route.params.id);
     },
     methods: {
-      ratingStar(item) {
-        if (!item) {
-          return {
-            star: 0,
-            half: 0,
-            left: 0,
-          };
-        }
-        const intNum = Math.round(item);
-        const star = Math.floor(intNum / 2);
-        const half = intNum % 2;
-        const left = 5 - star - half;
-        return {
-          star,
-          half,
-          left,
-        };
-      },
       goBack() {
         router.go(-1);
       },
       setPage(id) {
         fetchMovieSubject(id).then((res) => {
+          console.log(res);
           this.movie = res;
         });
       },

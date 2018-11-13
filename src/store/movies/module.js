@@ -10,7 +10,8 @@ const mutations = {
   },
   [type.FETCH_MOVIES_QUERY](state, payload) {
     console.log('111');
-    state.movieQuery.subjects = payload.data.subjects;
+    state.movieQuery.subjects = payload.data.data;
+    console.log(state.movieQuery.subjects.length);
     console.log('222');
     state.movieQuery.total = state.movieQuery.subjects.length;
     console.log('333');
@@ -31,15 +32,15 @@ const mutations = {
 
 const actions = {
   [type.FETCH_MOVIES](context, payload) {
-    api.fetchMovies(payload.type, { start: payload.start || 0 })
+    api.fetchMovies()
             .then(data => context.commit(type.FETCH_MOVIES, {
               type: payload.type,
-              subjects: data.subjects,
+              subjects: data.data,
             }));
   },
   [type.FETCH_MOVIES_QUERY](context, payload) {
-    api.fetchMoviesQuery({ q: payload.q })
-            .then(data => context.commit(type.FETCH_MOVIES_QUERY, { data, q: payload.q }));
+    api.fetchMoviesQuery({ name: payload.name })
+            .then(data => context.commit(type.FETCH_MOVIES_QUERY, { data, name: payload.name }));
   },
   [type.CLEAR_MOVIES_QUERY](context) {
     context.commit(type.CLEAR_MOVIES_QUERY);

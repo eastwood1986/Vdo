@@ -1,8 +1,6 @@
 {
   "name": "vue-douban",
   "version": "1.0.0",
-  "description": "A Vue.js project for douban.com",
-  "author": "Ralf <zhangkang103@gmail.com>",
   "license": "MIT",
   "private": true,
   "scripts": {

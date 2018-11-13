@@ -3,14 +3,15 @@ import fetch from './../base';
 export const MOVIESTYPE = {
   inTheaters: 'in_theaters',
   comingSoon: 'coming_soon',
+  avers: 'avers',
 };
 
-export function fetchMovies(type, { city = '广州', start = 0 } = {}) {
-  return fetch(`movie/${type}`, { city, start });
-}
-export function fetchMoviesQuery({ q, start = 0 }) {
-  return fetch('/movie/search', { q, start });
+export function fetchMoviesQuery({ name }) {
+  return fetch('http://miaobbs.herokuapp.com/api/avers/search', { name });
 }
 export function fetchMovieSubject(id) {
-  return fetch(`movie/subject/${id}`);
+  return fetch(`http://miaobbs.herokuapp.com/api/avers/${id}`);
+}
+export function fetchMovies() {
+  return fetch('http://miaobbs.herokuapp.com/api/avers');
 }

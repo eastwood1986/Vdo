@@ -5,18 +5,12 @@
         <router-link :to="{name: 'MovieSubject', params:{id: subject.id}}">
           <mu-paper>
             <div class='paper-border'>
-              <div class='paper-img' :style="'background-image: url('+subject.images.large+')'">
+              <div class='paper-img' :style="'background-image: url('+subject.cover+')'">
               </div>
             </div>
             <div class='paper-text'>
-              <p> {{subject.title}} </p>
-              <p class="star-box">
-                <span class="paper-star" v-if="subject.rating.average > 0">
-                  <Star class="star" :rating='subject.rating.average'></Star>
-                </span>
-
-                <span class='paper-rating'>{{subject.rating.average | fixNum}} </span>
-              </p>
+              <p> {{subject.shop_name}} </p>
+              <p> {{subject.av_name}} </p>
             </div>
           </mu-paper>
         </router-link>
@@ -31,7 +25,7 @@ import Star from 'components/Star';
 import * as type from './../../store/movies/type';
 
 export default {
-  name: 'movieList',
+  name: 'aversList',
   components: {
     Star,
   },
@@ -56,20 +50,10 @@ export default {
     console.log('[destroyed]');
   },
   methods: {
-    ratingStar(item) {
-      const intNum = Math.round(item);
-      const star = Math.floor(intNum / 2);
-      const half = intNum % 2;
-      const left = 5 - star - half;
-      return {
-        star,
-        half,
-        left,
-      };
-    },
-
     fetchData() {
       // doing
+      console.log('=====miao=====');
+      console.log(this.$store.state.movie.movies[this.tabName].subjects);
       if (
         !(this.$store.state.movie.movies[this.tabName].subjects &&
           this.$store.state.movie.movies[this.tabName].subjects.length > 0)
