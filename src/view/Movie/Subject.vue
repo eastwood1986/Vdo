@@ -23,10 +23,10 @@
       <p class="info-content"><span class="info-title">在籍店舗名</span><span class="info-text"><a :href ="movie.shop_url" target="_blank">{{movie.shop_name}}</a></span></p>
       <p class="info-content"><span class="info-title">种类</span><span class="info-text">{{movie.genre}}</span></p>
       <p class="info-content"><span class="info-title">区域</span><span class="info-text">{{movie.area}}</span></p>
-      <p class="info-content"><span class="info-title">电话</span><span class="info-text"><a href="tel:movie.tel">{{movie.tel}}</a></span></p>
+      <p class="info-content"><span class="info-title">电话</span><span class="info-text"><a :href=" 'tel:' + movie.tel" >{{movie.tel}}</a></span></p>
       <p class="info-content"><span class="info-title">女优新闻</span><span class="info-text"><a :href ="'https://cse.google.com/cse?cx=005344802183955803914%3Ascary4-gbfe&q='+movie.av_name+'&searchsubmit=true' " target="_blank">{{movie.av_name}}</a></span></p>
       <p class="info-content"><span class="info-title">女优参考片源</span><span class="info-text"><a :href ="'https://avgle.com/search/videos?search_query='+movie.av_name+'&search_type=videos' " target="_blank">{{movie.av_name}}</a></span></p>
-      <p class="info-content"><span class="info-title">女优DMM</span><span class="info-text"><a :href ="'http://www.dmm.co.jp/search/=/searchstr='+movie.av_name+'/analyze=V1EBAVcHUAE_/n1=FgRCTw9VBA4GAVhfWkIHWw__/n2=Aw1fVhQKX1ZRAlhMUlo5QQgBU1lR/sort=ranking/' " target="_blank">{{movie.av_name}}</a></span></p>
+      <p class="info-content"><span class="info-title">女优DMM</span><span class="info-text"><a :href ="'https://www.dmm.co.jp/search/=/searchstr='+movie.av_name+'/analyze=V1EBAVcHUAE_/n1=FgRCTw9VBA4GAVhfWkIHWw__/n2=Aw1fVhQKX1ZRAlhMUlo5QQgBU1lR/sort=ranking/' " target="_blank">{{movie.av_name}}</a></span></p>
     </div>
   </div>
 </template>
